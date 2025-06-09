@@ -49,4 +49,4 @@ function Breadcrumbs() {
 </Breadcrumb>
   )
 }
-export default Breadcrumbs
+export default Breadcrumbs;
