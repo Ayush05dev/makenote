@@ -3,18 +3,21 @@
 
 import { useEffect } from "react";
 import { ArrowLeftCircle } from "lucide-react";
-import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
 export default function HomeClient() {
-  const searchParams = useSearchParams();
+   useEffect(() => {
+    // console.log("i am in useEffect")
+    const params = new URLSearchParams(window.location.search);
+    const noAccess = params.get("noAccess");
 
-  useEffect(() => {
-    const noAccess = searchParams.get("noAccess");
     if (noAccess === "true") {
+        // console.log("i am in if block")
       toast.error("You don't have access to this document.");
     }
-  }, [searchParams]);
+   
+  }, []);
+
 
   return (
     <main className="flex space-x-2 items-center animate-pulse">

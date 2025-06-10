@@ -47,12 +47,12 @@
 
 // app/page.tsx (SERVER COMPONENT)
 import HomeClient from "@/components/HomeClient";
-import { Suspense } from "react";
+// import { Suspense } from "react";
 
 export default function Home() {
   return (
-    <Suspense fallback={null}>
+    
       <HomeClient />
-    </Suspense>
+   
   );
 }
