@@ -3,6 +3,7 @@
 import { adminDb } from "@/firebase-admin";
 import liveblocks from "@/lib/liveblocks";
 import { auth } from "@clerk/nextjs/server";
+// import { redirect } from "next/navigation";
 
 
 /*
@@ -15,17 +16,33 @@ import { auth } from "@clerk/nextjs/server";
 }
 */
 
+
+/*
+actually in server actions the auth.protect() does not needed (or we say does not work) . we need to do such way :
+ const { userId } = await auth()
+    
+    if (!userId) {
+      throw new Error('You must be signed in to add an item to your cart')
+    }
+
+    and then handle this error in server components
+*/
+
 export async function createNewDocument(){
-  auth.protect();
-    const { userId, sessionClaims } = await auth(); // in server actions auth() is asynchronous
+  // auth.protect();// not works in server actions
+  //   const { userId, sessionClaims } = await auth(); // in server actions auth() is asynchronous
   // if (!userId) redirect("/sign-in");
+
+   const { userId, sessionClaims, redirectToSignIn } = await auth();
+
+  if (!userId || !sessionClaims?.email) {
+     return redirectToSignIn();
+  }
 
   const docCollectionRef= adminDb.collection("documents");
   const docRef= await docCollectionRef.add({
     title:"Untitled Doc"
   })
-
-
 // as here we directly set the item, directly given the value of different fields like userId, role etc. but we do not need to define any such schema before for firestore database(schemaless).
   await adminDb.collection('users').doc(sessionClaims?.email!).collection('rooms').doc(docRef.id).set({
     userId:sessionClaims?.email,
@@ -39,7 +56,12 @@ export async function createNewDocument(){
 
 
 export async function deleteDocument(roomId:string){
-  auth.protect();
+  //auth.protect();// this does not work in server actions
+  const { userId, sessionClaims, redirectToSignIn } = await auth();
+
+  if (!userId || !sessionClaims?.email) {
+     return redirectToSignIn();
+  }
 
   // console.log("deleteDocument",roomId);
 
@@ -70,7 +92,12 @@ export async function deleteDocument(roomId:string){
 
 
 export async function inviteUserToDocument(roomId:string, email:string){
-  auth.protect();
+  const { userId, sessionClaims, redirectToSignIn } = await auth();
+
+  if (!userId || !sessionClaims?.email) {
+     return redirectToSignIn();
+  }
+  // auth.protect();
   // console.log("inviteUserToDocument", roomId, email);
 
   try{
@@ -92,7 +119,12 @@ export async function inviteUserToDocument(roomId:string, email:string){
 
 
 export async function removeUserFromDocument(roomId:string , email:string){
-  auth.protect();
+  // auth.protect();
+  const { userId, sessionClaims, redirectToSignIn } = await auth();
+
+  if (!userId || !sessionClaims?.email) {
+     return redirectToSignIn();
+  }
   // console.log("removeUserFromDocument",roomId,email);
 
   try{
