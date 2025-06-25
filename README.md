@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 MakeNote - Collaborative Notion-Inspired Document Editor
 
-## Getting Started
+MakeNote is a powerful, real-time collaborative document editor inspired by Notion. Designed with performance, scalability, and collaboration in mind, this app allows users to create, edit, and share documents effortlessly with modern features like AI integration, access control, and real-time syncing.
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+### 🔐 Authentication & Access Control
+
+* Authentication powered by **Clerk**, allowing sign-in via Google, GitHub, and more.
+* All routes are **fully protected**.
+* **Document ownership control**: Only the document owner can delete or manage invitations.
+* **Email-based collaboration invitations**.
+* Track how many users have access to each document.
+
+### 🧑‍💻 Real-Time Collaborative Editor
+
+* Built using **Liveblocks**, **Yjs**, and **BlockNote**.
+* See other users’ **live cursors** and actions as they type.
+* Supports over **10+ users simultaneously**.
+* Live **role-based access sync** across all sessions.
+* Change and update **document names** in real-time.
+
+### ✍️ Rich Text Features
+
+* Interactive **slash commands (/)** for block creation.
+* Supported block types:
+
+  * Headings (H1, H2, H3)
+  * Paragraphs
+  * Code blocks
+  * Tables
+  * Bullet lists
+  * Images (upload, resize)
+* Customize **font color**, **background color**, and **font styles**.
+* Integrated **dark mode** toggle.
+* **Breadcrumb navigation** for context-aware editing.
+
+### 🤖 AI-Powered Tools
+
+* **Chat with Document**: Ask questions about the content and receive context-aware responses.
+* **Multi-language Translation**: Translate the document summary to different languages using AI.
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology             | Purpose                                                         |
+| ---------------------- | --------------------------------------------------------------- |
+| **Next.js 14**         | Server-side rendering for SEO and performance                   |
+| **TypeScript**         | Type safety and developer productivity                          |
+| **Firebase**           | Real-time database for document data and user presence tracking |
+| **Cloudflare Workers** | Lightweight, fast backend using edge functions                  |
+| **Clerk**              | Authentication & user management                                |
+| **Liveblocks**         | Real-time collaboration & presence                              |
+| **Yjs**                | CRDT-based data sync                                            |
+| **BlockNote**          | Rich, Notion-style editor                                       |
+| **Shadcn UI**          | Modern, accessible UI components                                |
+
+---
+
+## 📸 Screenshots (Coming Soon)
+
+> Add screenshots/gifs of live editing, slash command, and AI features.
+
+---
+
+## 📦 Installation
 
 ```bash
+git clone https://github.com/yourusername/makenote.git
+cd makenote
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌐 Live Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+[👉 Click here to try the app](https://makenote-chi.vercel.app/)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🤝 Contributions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📄 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+None
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 💡 Inspiration
+
+Inspired by Notion’s seamless collaboration and UI but built with a modern, scalable full-stack architecture. MakeNote combines power and simplicity with performance-driven technologies.
+
+---
+
+## 📬 Contact
+
+For questions or feedback, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/ayushbansal0520) or open an issue.
+
+---
+
+Made with ❤️ by Ayush
